@@ -1,0 +1,8 @@
+---
+- name: test playbook
+  hosts: dbserver
+  tasks: 
+   - name: create hello world file
+     copy: 
+      content: hello world
+      dest: /tmp/test.txt

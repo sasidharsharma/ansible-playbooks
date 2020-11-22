@@ -1,0 +1,17 @@
+---
+- name: Ansible Docker container env variable test
+  hosts: dbserver
+  become: true
+  vars:
+   ansible_python_interpreter: /usr/bin/python3.6
+  tasks:
+  - name: Deploy postgres image
+    docker_container:
+     name: postgres
+     image: postgres:9.6
+     state: started
+     ports:
+     - "5432:5432"
+     env:
+      POSTRES_PASSWORD: mypassword
+     

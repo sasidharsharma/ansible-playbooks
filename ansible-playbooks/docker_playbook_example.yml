@@ -1,0 +1,15 @@
+---
+- name: Deploy a container in dbserver
+  hosts: dbserver
+  become: true
+  vars: 
+   ansible_python_interpreter: /usr/bin/python3.6
+  tasks:  
+  - name: Deploy nginx container in dbserver
+    docker_container: 
+     name: nginx
+     image: nginx:latest
+     state: started
+     ports:
+     - "80:80"
+     

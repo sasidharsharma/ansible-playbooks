@@ -1,0 +1,27 @@
+---
+- name: Install docker on dbserver
+  hosts: dbserver
+  become: true
+  tasks:
+  - name: upgrade yum utils
+    yum: 
+     name: yum-utils
+     state: latest
+     
+  - name: get docker repo url
+    get_url: 
+     url: https://download.docker.com/linux/centos/docker-ce.repo
+     dest: /etc/yum.repos.d/docker-ce.repo
+    become: true
+    
+  - name: Install docker
+    yum: 
+     name: docker-ce
+     state: latest
+    
+  - name: start docker service
+    service:
+     name: docker
+     state: started
+     enabled: yes
+     
