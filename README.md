@@ -1,3 +1,13 @@
-# flowdock-dynatrace
+# Ansible Playground
 
-The above code gets Server data from Dynatrace and updates the confluence wiki page. A flowdock message is sent with updated host and servives list from the Confluence wiki page
+The below playbooks are available in the repository
+1. Hello world file test
+2. Docker Installation
+3. Python 3 installation
+4. Docker container deploy examples
+
+Please double check the dependencies before use and dont hestitate to raise a PR for additions/improvements..
+
+Hope you have a good time...
+
+Cheers...
