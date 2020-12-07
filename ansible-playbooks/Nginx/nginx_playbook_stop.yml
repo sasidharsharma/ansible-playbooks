@@ -1,0 +1,16 @@
+---
+
+- name: Uninstall nginx and disable it
+  hosts: dbserver
+  become: true
+  tasks: 
+     
+  - name: Stop Nginx Service
+    service:
+     name: nginx
+     state: stopped
+     
+  - name: Uninstall Nginx
+    yum:
+     name: nginx
+     state: absent
