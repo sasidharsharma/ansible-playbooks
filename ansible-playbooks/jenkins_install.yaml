@@ -1,0 +1,49 @@
+---
+
+- name: Install Jenkins on DBServer
+  hosts: dbserver
+  become: true
+  tasks:
+  
+  - name: Install JDK
+    yum: 
+     name: java-1.8.0-openjdk-devel
+          
+  - name: Enable Jenkins Repository
+    get_url:
+     url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+     dest: /etc/yum.repos.d/jenkins.repo
+     
+  - name: Add Repository to the system
+    rpm_key: 
+     state: present
+     key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+     
+  - name: Install Jenkins
+    yum:
+     name: jenkins
+     state: present
+     
+  - name: Start Jenkins Service
+    service:
+     name: jenkins
+     status: started
+     enabled: yes
+     
+  - name: Open Firewalld port
+    firewalld:
+     zone: public
+     port: 8080/tcp
+     permanent: true
+     state: enabled
+     immediate: true
+     
+  - name: Register and get admin password
+    shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+    changed_when: false
+    register: yes
+    
+  - name: Print init password
+    debug:
+     var: result.stdout
+     
