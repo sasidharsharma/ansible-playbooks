@@ -7,6 +7,7 @@ The below playbooks are available in the repository
 4. Docker container deploy examples
 5. Jinja template example
 6. Nginx start and Stop 
+7. Jenkins Install
 
 Please double check the dependencies before use and dont hestitate to raise a PR for additions/improvements..
 
